@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">App Assignment 2</string>
+
+    <string name="Zipcode_entry_error">Please enter valid zipcode</string>
+</resources>
