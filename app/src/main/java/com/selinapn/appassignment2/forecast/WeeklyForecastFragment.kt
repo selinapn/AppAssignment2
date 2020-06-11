@@ -1,7 +1,6 @@
 package com.selinapn.appassignment2.forecast
 
-import android.content.Context
-import android.content.Intent
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,8 +14,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.selinapn.appassignment2.*
 import com.selinapn.appassignment2.api.DailyForecast
 import com.selinapn.appassignment2.api.WeeklyForecast
-
-import com.selinapn.appassignment2.details.ForecastDetailsFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -84,7 +81,10 @@ class WeeklyForecastFragment : Fragment() {
     private fun showForecastDetails(forecast: DailyForecast) {
         val temp = forecast.temp.max
         val description = forecast.weather[0].description
-        val action= WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp, description)
+        val date = forecast.date
+        val icon = forecast.weather[0].icon
+        val action= WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp,
+            description, date, icon)
         findNavController().navigate(action)
     }
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.widget.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -26,10 +26,17 @@ class MainActivity : AppCompatActivity() {
 
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
+
+
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.app_name)
-        findViewById<BottomNavigationView>(R.id.bottomNavigation).setupWithNavController(navController)
+        findViewById<BottomNavigationView>(R.id.bottomNavigation).setupWithNavController(
+            navController)
+
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.setTitle(R.string.app_name)
+        toolbar.inflateMenu(R.menu.settings_menu)
     }
 
 
@@ -49,10 +56,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
-
-
 
 
 }

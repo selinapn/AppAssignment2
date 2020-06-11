@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 fun createOpenWeatherMapService(): OpenWeatherMapService {
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://api.openweathermapp.org")
+        .baseUrl("http://api.openweathermap.org")
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 

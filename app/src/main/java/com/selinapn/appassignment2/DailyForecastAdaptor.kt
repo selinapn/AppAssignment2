@@ -19,8 +19,6 @@ private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 class DailyForecastViewHolder(
     view: View,
     private val tempDisplaySettingManager: TempDisplaySettingManager
-
-
 ) : RecyclerView.ViewHolder(view){
 
     private val tempText: TextView = view.findViewById(R.id.tempText)
@@ -43,6 +41,18 @@ class DailyForecastAdaptor(
     private val clickedHandler: (DailyForecast) -> Unit
 ): ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast,
+        parent, false)
+        return DailyForecastViewHolder(itemView, tempDisplaySettingManager)
+    }
+
+    override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
+        holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            clickedHandler(getItem(position))
+        }
+    }
 
     companion object {
         val DIFF_CONFIG = object: DiffUtil.ItemCallback<DailyForecast>() {
@@ -59,15 +69,5 @@ class DailyForecastAdaptor(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast,
-            parent, false)
-        return DailyForecastViewHolder(itemView, tempDisplaySettingManager)
-    }
 
-    override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
-        holder.bind(getItem(position))
-        holder.itemView.setOnClickListener{
-            clickedHandler(getItem(position))}
     }
-}

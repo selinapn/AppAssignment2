@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.selinapn.appassignment2.Location
 import com.selinapn.appassignment2.LocationRepository
-
 import com.selinapn.appassignment2.R
 
 
